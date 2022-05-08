@@ -2,7 +2,7 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-07 14:43:38
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 16:11:12
+ * @LastEditTime: 2022-05-08 21:21:34
  * @Description: file content
  */
 const Koa = require("koa");
@@ -23,6 +23,7 @@ const index = require("./routes/index");
 const users = require("./routes/users");
 const upload = require("./routes/upload");
 const article = require("./routes/article");
+const captcha = require("./routes/captcha");
 
 // error handler
 onerror(app);
@@ -42,12 +43,12 @@ app.use(
     extension: "pug",
   })
 );
-
+// 不需要token的白名单
 app.use(
   koajwt({
     secret: "template-jswt",
   }).unless({
-    path: [/^\/users\/login/, /^\/users\/register/],
+    path: [/^\/users\/login/, /^\/users\/register/, /^\/captcha/],
   })
 );
 
@@ -64,7 +65,7 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(upload.routes(), users.allowedMethods());
 app.use(article.routes(), article.allowedMethods());
-
+app.use(captcha.routes(), captcha.allowedMethods());
 // error-handling
 app.on("error", (err, ctx) => {
   console.error("server error", err, ctx);
