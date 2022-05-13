@@ -2,15 +2,15 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-08 16:05:15
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 16:12:15
+ * @LastEditTime: 2022-05-09 22:48:44
  * @Description: 文章管理路由控制
  */
 const router = require("koa-router")();
 
-const { add, findAll, findOne } = require("../controller/article");
+const { articleAdd, findAll, findOne } = require("../controller/article");
 router.prefix("/articles");
 // 发布文章
-router.post("/add", add);
+router.post("/add", articleAdd);
 
 // 查询所有文章 （分页）
 router.get("/findAll", findAll);

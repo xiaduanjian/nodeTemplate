@@ -2,7 +2,7 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-08 15:58:44
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 16:01:17
+ * @LastEditTime: 2022-05-09 22:52:18
  * @Description: 文章管理
  */
 
@@ -31,6 +31,6 @@ const articleSchema = new mongoose.Schema({
   author: String,
 });
 
-const Article = mongoose.model("articles", articleSchema);
+const Article = mongoose.model("article", articleSchema);
 
-module.exports = Article;
+module.exports = { Article };

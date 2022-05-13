@@ -2,7 +2,7 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-07 21:40:28
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 15:47:08
+ * @LastEditTime: 2022-05-11 16:21:51
  * @Description: 系统用户业务逻辑控制
  */
 const { User } = require("../models");
@@ -70,7 +70,9 @@ const login = async (ctx) => {
         ctx.body = {
           code: 200,
           msg: "登录成功",
-          token,
+          data: {
+            token
+          }
         };
       } else {
         ctx.body = {
@@ -218,6 +220,17 @@ const userUpdate = async (ctx) => {
     ctx
   );
 };
+// 查询用户信息
+const getInfo = async (ctx) => {
+  const { userName } = ctx.request.body;
+  await findOne(
+    User,
+    {
+      userName,
+    },
+    ctx
+  );
+};
 module.exports = {
   userAdd,
   userUpdate,
@@ -228,4 +241,5 @@ module.exports = {
   register,
   verifyToken,
   updatePassword,
+  getInfo
 };

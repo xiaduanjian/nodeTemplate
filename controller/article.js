@@ -2,12 +2,13 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-08 16:02:25
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 17:22:38
+ * @LastEditTime: 2022-05-09 22:47:49
  * @Description: 文章管理逻辑控制
  */
 const Article = require("../models/article");
+const { add } = require("./crudUtil");
 // 发布文章
-const add = async (ctx) => {
+const articleAdd = async (ctx) => {
   const { title, content } = ctx.request.body;
   await add(
     Article,
@@ -104,7 +105,7 @@ const findOne = async (ctx) => {
 };
 
 module.exports = {
-  add,
+  articleAdd,
   findAll,
   findOne,
 };

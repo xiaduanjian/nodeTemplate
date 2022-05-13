@@ -2,7 +2,7 @@
  * @Author: xia.duanjian
  * @Date: 2022-05-07 14:43:38
  * @LastEditors: xia.duanjian
- * @LastEditTime: 2022-05-08 15:48:45
+ * @LastEditTime: 2022-05-11 16:22:27
  * @Description: 系统用户
  */
 const router = require("koa-router")();
@@ -16,6 +16,7 @@ const {
   register,
   verifyToken,
   updatePassword,
+  getInfo
 } = require("../controller/user");
 
 router.prefix("/users");
@@ -44,4 +45,6 @@ router.post("/updatePassword", updatePassword);
 
 // 修改系统用户
 router.post("/update/personal", userUpdate);
+// 查询用户信息
+router.post("/getInfo", getInfo);
 module.exports = router;
